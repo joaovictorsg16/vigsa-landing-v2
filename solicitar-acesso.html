@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Acesso Antecipado - Vigsa Health</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: white;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-back {
+            background: #111827;
+            color: white;
+        }
+
+        .btn-back:hover {
+            background: #1f2937;
+        }
+
+        .btn-primary {
+            background: #dc2626;
+            color: white;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 80px 0;
+            padding-top: 128px;
+        }
+
+        .form-container {
+            max-width: 672px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 1024px) {
+            .form-title {
+                font-size: 3rem;
+            }
+        }
+
+        .form-description {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 64px;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .input, .textarea, .select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            background: white;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            height: 48px;
+        }
+
+        .input:focus, .textarea:focus, .select:focus {
+            outline: none;
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .textarea {
+            min-height: 120px;
+            resize: vertical;
+            height: auto;
+        }
+
+        .select {
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 64px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 48px;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .footer-logo {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo img {
+            height: 56px;
+            width: auto;
+        }
+
+        .footer-description {
+            color: #d1d5db;
+            margin-bottom: 24px;
+            max-width: 448px;
+        }
+
+        .footer-contact h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .footer-contact {
+            color: #d1d5db;
+        }
+
+        .footer-contact p {
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            margin-top: 48px;
+            padding-top: 32px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <a href="index.html">
+                        <img src="images/vigsa-logo-clean.png" alt="Vigsa Health" style="height: 48px; width: auto;">
+                    </a>
+                </div>
+                <a href="index.html" class="btn btn-back">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 19-7-7 7-7M19 12H5"/>
+                    </svg>
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="form-container">
+            <h2 class="form-title">Solicitar Acesso Antecipado</h2>
+            <p class="form-description">
+                Preencha o formulário abaixo para solicitar acesso antecipado à plataforma Vigsa. Nossa equipe entrará em
+                contato assim que uma vaga estiver disponível.
+            </p>
+
+            <div class="card">
+                <form class="form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" class="label">Nome</label>
+                        <input type="text" id="name" name="name" class="input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="label">E-mail</label>
+                        <input type="email" id="email" name="email" class="input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specialty" class="label">Especialidade</label>
+                        <select id="specialty" name="specialty" class="select" required>
+                            <option value="">Selecione sua especialidade</option>
+                            <option value="clinica-medica">Clínica Médica</option>
+                            <option value="neurologia">Neurologia</option>
+                            <option value="pediatria">Pediatria</option>
+                            <option value="emergencia">Emergência</option>
+                            <option value="outra">Outra</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comment" class="label">Comentário (opcional)</label>
+                        <textarea id="comment" name="comment" class="textarea"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        Solicitar acesso antecipado
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <img src="images/vigsa-logo-clean.png" alt="Vigsa Health">
+                    </div>
+                    <p class="footer-description">
+                        Unimos diagnósticos, tratamentos, exames e interações medicamentosas em um único ambiente — dinâmico,
+                        acessível e conectado.
+                    </p>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <div>
+                        <p><strong>E-mail:</strong> contato@vigsahealth.com</p>
+                        <p><strong>Localização:</strong> Goiânia, GO - Brasil</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Vigsa Health. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                specialty: formData.get('specialty'),
+                comment: formData.get('comment')
+            };
+            
+            // Here you would typically send the data to your server
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Solicitação enviada com sucesso! Entraremos em contato em breve.');
+            
+            // Reset form
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
