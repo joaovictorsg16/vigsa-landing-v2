@@ -10,6 +10,7 @@ interface FAQItemProps {
 
 export default function FAQItem({ question, answer, index }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(false)
+  console.log(index)
 
   return (
     <div className="faq-item card">

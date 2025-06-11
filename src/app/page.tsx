@@ -195,7 +195,7 @@ export default function Home() {
             <div className="card">
               <div style={{ padding: "32px" }}>
                 <p style={{ fontSize: "1.125rem", fontStyle: "italic", color: "#374151", marginBottom: "24px" }}>
-                  "É a primeira vez que sinto que uma tecnologia realmente entende meu raciocínio clínico."
+                  {"\""}É a primeira vez que sinto que uma tecnologia realmente entende meu raciocínio clínico.{"\""}
                 </p>
                 <div>
                   <p style={{ fontWeight: 600, color: "#111827" }}>Dra. Larissa Monteiro</p>
@@ -206,7 +206,7 @@ export default function Home() {
             <div className="card">
               <div style={{ padding: "32px" }}>
                 <p style={{ fontSize: "1.125rem", fontStyle: "italic", color: "#374151", marginBottom: "24px" }}>
-                  "A Vigsa poupa tempo, reduz ruído e oferece segurança. É objetiva, como a medicina deve ser."
+                  {"\""}A Vigsa poupa tempo, reduz ruído e oferece segurança. É objetiva, como a medicina deve ser.{"\""}
                 </p>
                 <div>
                   <p style={{ fontWeight: 600, color: "#111827" }}>Dr. Gustavo Ribeiro</p>
@@ -217,7 +217,7 @@ export default function Home() {
             <div className="card">
               <div style={{ padding: "32px" }}>
                 <p style={{ fontSize: "1.125rem", fontStyle: "italic", color: "#374151", marginBottom: "24px" }}>
-                  "Uso diariamente. Torna o exercício clínico mais preciso, mais leve e mais confiável."
+                  {"\""}Uso diariamente. Torna o exercício clínico mais preciso, mais leve e mais confiável.{"\""}
                 </p>
                 <div>
                   <p style={{ fontWeight: 600, color: "#111827" }}>Dra. Helena Tavares</p>
