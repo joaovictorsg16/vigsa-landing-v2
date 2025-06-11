@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigsa Health - Decisões clínicas mais rápidas, seguras e inteligentes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            color: #374151;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #111827;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: #f9fafb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 48px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 64px;
+            max-width: 896px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 64px;
+        }
+
+        .star-rating {
+            display: flex;
+            color: #dc2626;
+        }
+
+        .star {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #111827;
+            margin-bottom: 64px;
+        }
+
+        @media (min-width: 1024px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .grid-md-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-md-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-lg-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-lg-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-lg-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-content {
+            padding: 32px;
+            text-align: center;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .card-description {
+            color: #6b7280;
+        }
+
+        /* Stats */
+        .stat-card {
+            text-align: center;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #fecaca;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .stat-number {
+                font-size: 3rem;
+            }
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #374151;
+        }
+
+        @media (min-width: 768px) {
+            .stat-label {
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .feature-cards {
+            display: grid;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .feature-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-card {
+            padding: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        /* About */
+        .about-list {
+            list-style: none;
+            margin-top: 32px;
+        }
+
+        .about-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: #fef2f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .check-icon span {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 16px;
+        }
+
+        .faq-button {
+            width: 100%;
+            padding: 24px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .faq-button:hover {
+            background: #f9fafb;
+        }
+
+        .faq-question {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            color: #6b7280;
+            transition: transform 0.2s;
+        }
+
+        .faq-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 16px 24px 24px;
+            color: #6b7280;
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        /* Purpose */
+        .purpose {
+            padding: 128px 0;
+            background: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        .purpose h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 32px;
+        }
+
+        @media (min-width: 1024px) {
+            .purpose h2 {
+                font-size: 3rem;
+            }
+        }
+
+        .purpose p {
+            font-size: 1.5rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: #111827;
+            margin-top: 40px;
+        }
+
+        .btn-white:hover {
+            background: #f3f4f6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 64px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 48px;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .footer-logo {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo img {
+            height: 56px;
+            width: auto;
+        }
+
+        .footer-description {
+            color: #d1d5db;
+            margin-bottom: 24px;
+            max-width: 448px;
+        }
+
+        .footer-contact {
+            color: #d1d5db;
+            font-size: 0.875rem;
+        }
+
+        .footer-contact p {
+            margin-bottom: 4px;
+        }
+
+        .footer-links h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #f87171;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            margin-top: 48px;
+            padding-top: 32px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* Utilities */
+        .bg-gray-50 {
+            background: #f9fafb;
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .max-w-4xl {
+            max-width: 896px;
+            margin: 0 auto;
+        }
+
+        .mb-16 {
+            margin-bottom: 64px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="nav">
+                    <div>
+                        <img src="images/vigsa-logo-clean.png" alt="Vigsa Health" style="height: 48px; width: auto;">
+                    </div>
+                    <nav class="nav-links">
+                        <button class="nav-link" onclick="scrollToSection('features')">Funcionalidades</button>
+                        <button class="nav-link" onclick="scrollToSection('about')">Sobre</button>
+                        <button class="nav-link" onclick="scrollToSection('faq')">FAQ</button>
+                    </nav>
+                </div>
+                <a href="solicitar-acesso.html" class="btn btn-primary">
+                    Solicitar Acesso
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Decisões clínicas mais rápidas, seguras e inteligentes.</h1>
+            <p>Transformamos raciocínio em condutas práticas. A Vigsa é o copiloto clínico do médico moderno, integrando IA, diretrizes e sua expertise em um só lugar.</p>
+            <div>
+                <a href="solicitar-acesso.html" class="btn btn-primary btn-lg">
+                    Solicitar acesso antecipado
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="stars">
+                <div class="star-rating">
+                    <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <span style="color: #6b7280; font-weight: 500;">Recomendado por médicos especialistas</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Centralize suas Fontes e Tome Decisões com Confiança</h2>
+            <div class="grid grid-cols-1 grid-md-2 grid-lg-3">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">🔗</div>
+                        <h3 class="card-title">Centralize suas Fontes</h3>
+                        <p class="card-description">Acesse todas as informações médicas necessárias em um único lugar, eliminando a busca em múltiplas fontes desconectadas.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">⚡</div>
+                        <h3 class="card-title">Integração Inteligente</h3>
+                        <p class="card-description">Nossa IA integra sinais, sintomas, exames e protocolos automaticamente, facilitando a chegada à conduta adequada.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">🛡️</div>
+                        <h3 class="card-title">Decisões com Confiança</h3>
+                        <p class="card-description">Tenha segurança em decisões críticas com suporte baseado em evidências e diretrizes médicas validadas.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">🎯</div>
+                        <h3 class="card-title">Foco no Raciocínio</h3>
+                        <p class="card-description">Dedique mais tempo ao raciocínio clínico e menos tempo buscando informações, melhorando a qualidade do atendimento.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">📱</div>
+                        <h3 class="card-title">Tudo em Um Só App</h3>
+                        <p class="card-description">Acesse condutas, CID, exames e doses em uma única plataforma, otimizando seu fluxo de trabalho.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section bg-gray-50">
+        <div class="container">
+            <div class="text-center mb-16">
+                <h2 class="section-title">De médicos para médicos, desenvolvido com experiência clínica real</h2>
+                <p style="font-size: 1.25rem; color: #6b7280; max-width: 896px; margin: 0 auto;">Nossa plataforma é resultado da colaboração entre especialistas comprometidos em transformar a prática médica através da tecnologia.</p>
+            </div>
+            <div class="grid grid-cols-1 grid-md-2 grid-lg-4">
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Diretrizes médicas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponibilidade</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Condutas validadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfação médica</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Funcionalidades do produto</h2>
+            <div class="features-grid">
+                <div>
+                    <img src="images/vigsa-logo-clean.png" alt="Dashboard da Vigsa" class="feature-image">
+                </div>
+                <div class="feature-cards">
+                    <div class="feature-card card">
+                        <h3>Condutas com IA</h3>
+                        <p>Nossa IA é baseada em guidelines oficiais, garantindo que as condutas sugeridas estejam alinhadas com as melhores práticas médicas.</p>
+                    </div>
+                    <div class="feature-card card">
+                        <h3>Calculadoras médicas integradas</h3>
+                        <p>Acesse calculadoras médicas essenciais diretamente na plataforma, sem precisar recorrer a outras ferramentas.</p>
+                    </div>
+                    <div class="feature-card card">
+                        <h3>Busca unificada</h3>
+                        <p>Encontre rapidamente CID-10, bulas, exames e medicamentos em um único lugar, economizando tempo valioso.</p>
+                    </div>
+                    <div class="feature-card card">
+                        <h3>IA que entende raciocínio clínico</h3>
+                        <p>Nossa tecnologia compreende o raciocínio médico com base em sinais, sintomas e exames, oferecendo suporte personalizado.</p>
+                    </div>
+                    <div class="feature-card card">
+                        <h3>Dashboard pessoal</h3>
+                        <p>Acompanhe seus casos resolvidos e tenha insights sobre sua prática clínica através de um dashboard intuitivo.</p>
+                    </div>
+                    <div class="feature-card card">
+                        <h3>Multiplataforma</h3>
+                        <p>Acesse a Vigsa pelo navegador ou pelo celular, garantindo flexibilidade no seu dia a dia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-gray-50">
+        <div class="container">
+            <h2 class="section-title">O que dizem sobre nós</h2>
+            <div class="grid grid-cols-1 grid-md-3">
+                <div class="card">
+                    <div style="padding: 32px;">
+                        <p style="font-size: 1.125rem; font-style: italic; color: #374151; margin-bottom: 24px;">"É a primeira vez que sinto que uma tecnologia realmente entende meu raciocínio clínico."</p>
+                        <div>
+                            <p style="font-weight: 600; color: #111827;">Dra. Larissa Monteiro</p>
+                            <p style="color: #dc2626; font-size: 0.875rem;">Clínica Médica</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="padding: 32px;">
+                        <p style="font-size: 1.125rem; font-style: italic; color: #374151; margin-bottom: 24px;">"A Vigsa poupa tempo, reduz ruído e oferece segurança. É objetiva, como a medicina deve ser."</p>
+                        <div>
+                            <p style="font-weight: 600; color: #111827;">Dr. Gustavo Ribeiro</p>
+                            <p style="color: #dc2626; font-size: 0.875rem;">Emergencista</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="padding: 32px;">
+                        <p style="font-size: 1.125rem; font-style: italic; color: #374151; margin-bottom: 24px;">"Uso diariamente. Torna o exercício clínico mais preciso, mais leve e mais confiável."</p>
+                        <div>
+                            <p style="font-weight: 600; color: #111827;">Dra. Helena Tavares</p>
+                            <p style="color: #dc2626; font-size: 0.875rem;">Neurologista</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Sobre a Vigsa</h2>
+            <div class="features-grid">
+                <div>
+                    <img src="images/vigsa-logo-clean.png" alt="Equipe Vigsa" class="feature-image">
+                </div>
+                <div>
+                    <p style="font-size: 1.25rem; color: #6b7280; margin-bottom: 32px;">A Vigsa foi desenvolvida por uma equipe multidisciplinar de especialistas comprometidos em transformar a prática médica através da tecnologia. Nossa plataforma é resultado da colaboração entre:</p>
+                    <ul class="about-list">
+                        <li class="about-item">
+                            <div class="check-icon">
+                                <span>✓</span>
+                            </div>
+                            <span>Médicos da rede pública e privada</span>
+                        </li>
+                        <li class="about-item">
+                            <div class="check-icon">
+                                <span>✓</span>
+                            </div>
+                            <span>Professores e preceptores de universidades</span>
+                        </li>
+                        <li class="about-item">
+                            <div class="check-icon">
+                                <span>✓</span>
+                            </div>
+                            <span>Especialistas com experiência prática em emergências clínicas</span>
+                        </li>
+                        <li class="about-item">
+                            <div class="check-icon">
+                                <span>✓</span>
+                            </div>
+                            <span>Profissionais de medicina baseada em evidência</span>
+                        </li>
+                        <li class="about-item">
+                            <div class="check-icon">
+                                <span>✓</span>
+                            </div>
+                            <span>Especialistas em tecnologia médica</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section bg-gray-50">
+        <div class="container max-w-4xl">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div>
+                <div class="faq-item card">
+                    <button class="faq-button" onclick="toggleFaq(0)">
+                        <span class="faq-question">O que é a Vigsa?</span>
+                        <svg class="faq-icon" id="icon-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-0">
+                        <p>A Vigsa é um copiloto clínico para médicos que utiliza inteligência artificial para transformar raciocínio em condutas práticas, integrando dados com evidências e entregando decisões clínicas personalizadas, em segundos e em um só lugar.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item card">
+                    <button class="faq-button" onclick="toggleFaq(1)">
+                        <span class="faq-question">A IA substitui o raciocínio do médico?</span>
+                        <svg class="faq-icon" id="icon-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-1">
+                        <p>Não. A IA da Vigsa funciona como um copiloto, auxiliando o médico na tomada de decisões. O raciocínio clínico e a decisão final sempre serão do profissional de saúde. Nossa tecnologia apenas oferece suporte baseado em evidências para tornar o processo mais eficiente e seguro.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item card">
+                    <button class="faq-button" onclick="toggleFaq(2)">
+                        <span class="faq-question">A IA da Vigsa é confiável?</span>
+                        <svg class="faq-icon" id="icon-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-2">
+                        <p>Sim. Nossa IA é treinada nas principais diretrizes nacionais e internacionais, garantindo que as recomendações estejam alinhadas com as melhores práticas médicas baseadas em evidências. Além disso, todo o conteúdo passa por revisão de especialistas antes de ser disponibilizado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item card">
+                    <button class="faq-button" onclick="toggleFaq(3)">
+                        <span class="faq-question">Quem desenvolve e valida os conteúdos?</span>
+                        <svg class="faq-icon" id="icon-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-3">
+                        <p>Os conteúdos da Vigsa são desenvolvidos e validados por uma equipe multidisciplinar composta por médicos da rede pública e privada, professores universitários e especialistas em medicina baseada em evidência, garantindo a qualidade e confiabilidade das informações.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item card">
+                    <button class="faq-button" onclick="toggleFaq(4)">
+                        <span class="faq-question">Em quais dispositivos posso usar?</span>
+                        <svg class="faq-icon" id="icon-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-4">
+                        <p>A Vigsa é multiplataforma e pode ser acessada tanto pelo navegador em computadores quanto por dispositivos móveis como smartphones e tablets, oferecendo flexibilidade para se adaptar à sua rotina.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item card">
+                    <button class="faq-button" onclick="toggleFaq(5)">
+                        <span class="faq-question">Como posso acessar?</span>
+                        <svg class="faq-icon" id="icon-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-5">
+                        <p>Atualmente, a Vigsa está em fase de acesso antecipado. Para solicitar acesso, preencha o formulário disponível nesta página e entraremos em contato assim que uma vaga estiver disponível.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Purpose Section -->
+    <section class="purpose">
+        <div class="container max-w-4xl">
+            <h2>Nosso Propósito</h2>
+            <p>Existimos para permitir que o cuidado à vida seja pleno, leve e digno — mesmo nos contextos mais críticos.</p>
+            <div>
+                <a href="solicitar-acesso.html" class="btn btn-white btn-lg">
+                    Solicitar acesso antecipado
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <img src="images/vigsa-logo-clean.png" alt="Vigsa Health">
+                    </div>
+                    <p class="footer-description">Unimos diagnósticos, tratamentos, exames e interações medicamentosas em um único ambiente — dinâmico, acessível e conectado.</p>
+                    <div class="footer-contact">
+                        <p><strong>Contato:</strong> contato@vigsahealth.com</p>
+                        <p><strong>Localização:</strong> Goiânia, GO - Brasil</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#features">Funcionalidades</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="solicitar-acesso.html">Solicitar Acesso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Vigsa Health. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let openFaq = null;
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerHeight = 80;
+                const targetPosition = element.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function toggleFaq(index) {
+            const answer = document.getElementById(`answer-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
+            
+            if (openFaq === index) {
+                answer.classList.remove('show');
+                icon.classList.remove('rotated');
+                openFaq = null;
+            } else {
+                // Close previously open FAQ
+                if (openFaq !== null) {
+                    document.getElementById(`answer-${openFaq}`).classList.remove('show');
+                    document.getElementById(`icon-${openFaq}`).classList.remove('rotated');
+                }
+                
+                // Open new FAQ
+                answer.classList.add('show');
+                icon.classList.add('rotated');
+                openFaq = index;
+            }
+        }
+    </script>
+</body>
+</html>
