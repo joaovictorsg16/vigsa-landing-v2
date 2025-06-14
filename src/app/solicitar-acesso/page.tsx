@@ -10,6 +10,7 @@ export default function SolicitarAcesso() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    whatsapp: "",
     specialty: "",
     comment: "",
   })
@@ -33,6 +34,7 @@ export default function SolicitarAcesso() {
     setFormData({
       name: "",
       email: "",
+      whatsapp: "",
       specialty: "",
       comment: "",
     })
@@ -92,6 +94,22 @@ export default function SolicitarAcesso() {
                     className="input"
                     required
                     value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="whatsapp" className="label">
+                    WhatsApp
+                  </label>
+                  <input
+                    type="tel"
+                    id="whatsapp"
+                    name="whatsapp"
+                    className="input"
+                    placeholder="(00) 00000-0000"
+                    required
+                    value={formData.whatsapp}
                     onChange={handleChange}
                   />
                 </div>
